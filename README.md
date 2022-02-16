@@ -1,7 +1,21 @@
+# seleniumTask
+
+***This is an automation test script for testing the [Demo Site](http://automationpractice.com/index.php).***
+
+## Scenario
+1. Create two new accounts
+2. Login with any of the new account
+3. Go to the Casual Dresses section and add a dress to the cart
+4. Go to the T-shirt section, Filter the list with blue color and add a shirt from the filter list
+5. Now complete the order by selecting the payment process ‘Payment by check’
+6. Sign out from the account
+7. Run the above cycle (2-6) for another user.
+
 ## Language
 - Java
 
 ## Automation Tool
+- Selenium
 - Maven
 
 ## Framework
