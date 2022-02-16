@@ -15,12 +15,12 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 public class automationPractice {
-    WebDriver driver;
-    WebDriverWait wait;
     static Faker faker = new Faker();
     static String[] email = new String[10];
+    WebDriver driver;
+    WebDriverWait wait;
     int index = 0;
-    int userIndex=0;
+    int userIndex = 0;
     String password = "abcd1234#";
 
     @BeforeSuite
@@ -43,7 +43,6 @@ public class automationPractice {
         String city = faker.address().city();
         String postCode = String.valueOf(faker.number().numberBetween(10000, 99999));
         String phoneNumber = faker.phoneNumber().cellPhone();
-        System.out.println(email[index - 1]);
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("email_create"))).sendKeys(email[index - 1]);
         driver.findElement(By.id("SubmitCreate")).click();
@@ -55,13 +54,11 @@ public class automationPractice {
         driver.findElement(By.id("address1")).sendKeys(address);
         driver.findElement(By.id("city")).sendKeys(city);
 
-//        wait.until(ExpectedConditions.elementToBeClickable(By.tagName("select")));
         Select state = new Select(driver.findElement(By.id("id_state")));
         state.selectByIndex(5);
 
         driver.findElement(By.id("postcode")).sendKeys(postCode);
 
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("id_country")));
         Select country = new Select(driver.findElement(By.id("id_country")));
         country.selectByVisibleText("United States");
 
@@ -72,8 +69,7 @@ public class automationPractice {
 
     @Test(description = "Login with the any of the new account", priority = 2)
     void login() {
-        System.out.println("Login to " + (userIndex) + " index mail >>>> " + email[userIndex]);
-        driver.findElement(By.id("email")).sendKeys(email[index - 2]);
+        driver.findElement(By.id("email")).sendKeys(email[userIndex]);
         driver.findElement(By.id("passwd")).sendKeys(password);
         driver.findElement(By.id("SubmitLogin")).click();
         userIndex++;
@@ -147,27 +143,4 @@ public class automationPractice {
     public void teardown() {
         driver.quit();
     }
-
-
-//    static Faker faker = new Faker();
-//    static String[] email = new String[10];
-//    int index = 0;
-//    int userIndex=0;
-//
-//    @Test(invocationCount = 2, priority = 1)
-//    void signUp() {
-//        email[index++] = faker.numerify("autopractice####@grr.la");
-//        System.out.println(email[index-1]);
-//    }
-//
-//    @Test(priority = 2)
-//    void login() {
-//        System.out.println("Login to "+ (userIndex) +" index mail >>>> " + email[userIndex]);
-//        userIndex++;
-//    }
-//
-//    @Test(priority = 3)
-//    void loginTwo() {
-//        login();
-//    }
 }
